@@ -1,2 +1,3 @@
-'url' : 'mongodb://localhost:27200/passportlogin' 
-
+module.exports = {
+    'url': 'mongodb://localhost:8080/passportlogin'
+};

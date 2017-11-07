@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 8080;
-var mongoose.Promise = require('bluebird');
+var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 
@@ -13,6 +13,7 @@ var session = require('express-session');
 var configDB = require('./config/database.js');
 
 mongoose.connect(configDB.url, {useMongoClient: true}); // connect to our database
+mongoose.Promise = require('bluebird');
 
 // require('./config/passport')(passport); // pass passport for configuration
 
