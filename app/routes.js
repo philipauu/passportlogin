@@ -8,11 +8,11 @@ module.exports = function (app, passport) {
     });
 
     // show the login form
-    app.get('/login', function (req, res) {
+    app.get('/connect/login', function (req, res) {
         console.log('loading login');
 
         // render the page and pass in any flash data if it exists
-        res.render('login.ejs', {
+        res.render('connect-login.ejs', {
             message: req.flash('loginMessage')
         });
     });
@@ -35,9 +35,9 @@ module.exports = function (app, passport) {
     });
 
     // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
+    app.post('/connect/signup', passport.authenticate('local-signup', {
         successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/signup', // redirect back to the signup page if there is an error
+        failureRedirect: '/connect/local', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
 
@@ -55,12 +55,12 @@ module.exports = function (app, passport) {
     // FACEBOOK ROUTES =====================
     // =====================================
     // route for facebook authentication and login
-    app.get('/auth/facebook', passport.authenticate('facebook', {
+    app.get('/conect/facebook', passport.authorize('facebook', {
         scope: 'email'
     }));
 
     // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
+    app.get('/connect/facebook/callback',
         passport.authenticate('facebook', {
             successRedirect: '/profile',
             failureRedirect: '/'
@@ -69,10 +69,12 @@ module.exports = function (app, passport) {
     // TWITTER ROUTES ======================
     // =====================================
     // route for twitter authentication and login
-    app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/connect/twitter', passport.authorize('twitter'), {
+        scope: 'email'
+    });
 
     // handle the callback after twitter has authenticated the user
-    app.get('/auth/twitter/callback',
+    app.get('/connect/twitter/callback',
         passport.authenticate('twitter', {
             successRedirect: '/profile',
             failureRedirect: '/'
@@ -83,7 +85,7 @@ module.exports = function (app, passport) {
     // send to google to do the authentication
     // profile gets us their basic information including their name
     // email gets their emails
-    app.get('/auth/google', passport.authenticate('google', {
+    app.get('/connect/google', passport.authorize('google', {
         scope: ['profile', 'email']
     }));
 
@@ -107,7 +109,8 @@ function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
-        return next();
+        
+    return next();
 
     // if they aren't redirect them to the home page
     res.redirect('/');
