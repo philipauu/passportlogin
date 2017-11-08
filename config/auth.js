@@ -14,8 +14,8 @@ module.exports = {
     },
 
     'googleAuth': {
-        'consumerKey': '391943635759-050sq0jduv1pb50t0t6n8q0meh6bkgbe.apps.googleusercontent.com',
-        'consumerSecret': 'TlLrNDeIWmgYRHWuDjW6wG4b',
+        'clientID': '391943635759-050sq0jduv1pb50t0t6n8q0meh6bkgbe.apps.googleusercontent.com',
+        'clientSecret': 'TlLrNDeIWmgYRHWuDjW6wG4b',
         'callbackURL': 'http://localhost:8080/auth/google/callback'
     }
 };
