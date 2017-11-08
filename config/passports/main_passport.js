@@ -303,7 +303,7 @@ module.exports = function (passport) {
     // =========================================================================
     var google_passport = require('./google_passport');
     google_passport(User, passport, configAuth);
-    
+
     // passport.use(new GoogleStrategy({
 
     //         clientID: configAuth.googleAuth.clientID,
