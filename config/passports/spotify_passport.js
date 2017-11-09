@@ -12,7 +12,7 @@ function spotify_passport(User, passport, configAuth) {
 
         // spotify will send back the token and profile
         function (req, token, refreshToken, profile, done) {
-
+            console.log(profile);
             // asynchronous
             process.nextTick(function () {
 
@@ -35,8 +35,8 @@ function spotify_passport(User, passport, configAuth) {
                             // if there is a user id already but no token (user was linked at one point and then removed)
                             if (!user.spotify.token) {
                                 user.spotify.token = token;
-                                user.spotify.name = profile.name.givenName + ' ' + profile.name.familyName;
-                                user.spotify.email = profile.emails[0].value;
+                                user.spotify.displayName = profile.displayName;
+                                user.spotify.followers = profile.followers;
 
                                 user.save(function (err) {
                                     if (err)
@@ -52,8 +52,8 @@ function spotify_passport(User, passport, configAuth) {
 
                             newUser.spotify.id = profile.id;
                             newUser.spotify.token = token;
-                            newUser.spotify.name = profile.name.givenName + ' ' + profile.name.familyName;
-                            newUser.spotify.email = profile.emails[0].value;
+                            newUser.spotify.displayName = profile.displayName;
+                            newUser.spotify.followers = profile.followers;
 
                             newUser.save(function (err) {
                                 if (err)
@@ -69,8 +69,8 @@ function spotify_passport(User, passport, configAuth) {
 
                     user.spotify.id = profile.id;
                     user.spotify.token = token;
-                    user.spotify.name = profile.name.givenName + ' ' + profile.name.familyName;
-                    user.spotify.email = profile.emails[0].value;
+                    user.spotify.displayName = profile.displayName
+                    user.spotify.followers = profile.followers;
 
                     user.save(function (err) {
                         if (err)

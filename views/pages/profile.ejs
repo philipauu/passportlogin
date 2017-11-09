@@ -137,6 +137,34 @@
 
                 </div>
             </div>
+
+            <!-- SPOTIFY INFORMATION -->
+            <div class="col-sm-6">
+                <div class="well">
+                    <h3 class="text-success">
+                        <span class="fa fa-spotify"></span> Spotify</h3>
+
+                    <% if (user.spotify.token) { %>
+                        <p>
+                            <strong>id</strong>:
+                            <%= user.spotify.id %>
+                                <br>
+                                <strong>token</strong>:
+                                <%= user.spotify.token %>
+                                    <br>
+                                    <strong>displayName</strong>:
+                                    <%= user.spotify.displayName %>
+                                        <br>
+                                        <strong>followers</strong>:
+                                        <%= user.spotify.followers %>
+                        </p>
+                        <a href="/unlink/spotify" class="btn btn-success">Unlink</a>
+                        <% } else { %>
+                            <a href="/connect/spotify" class="btn btn-success">Connect Spotify</a>
+                            <% } %>
+
+                </div>
+            </div>
         </div>
     </div>
 

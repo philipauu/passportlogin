@@ -30,8 +30,8 @@ var userSchema = mongoose.Schema({
     spotify: {
         id: String,
         token: String,
-        email: String,
-        name: String
+        displayName: String,
+        followers: String
     }
 
 });

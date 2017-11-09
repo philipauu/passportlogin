@@ -3,7 +3,7 @@ function spotify_routes(app, passport) {
     //send to spotify to do the authentication
     app.get('/auth/spotify', passport.authenticate('spotify'));
 
-    // handle the callback after twitter has authenticate the user
+    // handle the callback after spotify has authenticate the user
     app.get('/auth/spotify/callback',
         passport.authenticate('spotify', {
             successRedirect: '/profile',
@@ -14,7 +14,7 @@ function spotify_routes(app, passport) {
 
     // send to spotify to do the authorization
     app.get('/connect/spotify', passport.authorize('spotify', {
-        scope: 'email'
+        scope: ['user-read-email', 'user-read-private']
     }));
 
     // handle the callback after spotify has authorized the user
