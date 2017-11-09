@@ -17,5 +17,11 @@ module.exports = {
         'clientID': '391943635759-050sq0jduv1pb50t0t6n8q0meh6bkgbe.apps.googleusercontent.com',
         'clientSecret': 'TlLrNDeIWmgYRHWuDjW6wG4b',
         'callbackURL': 'http://localhost:8080/auth/google/callback'
+    },
+
+    'spotifyAuth': {
+        'clientID': '7a6d9c4143a24eb4b021e94fd6dbf20e',
+        'clientSecret': 'fcfdd9eb6b514c43a459c26b9ae51dd6',
+        'callbackURL': 'http://localhost:8080/auth/spotify/callback'
     }
 };

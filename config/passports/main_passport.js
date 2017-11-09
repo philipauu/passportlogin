@@ -22,4 +22,7 @@ module.exports = function (passport) {
     var google_passport = require('./google_passport');
     google_passport(User, passport, configAuth);
 
+    var spotify_passport = require('./spotify_passport');
+    spotify_passport(User, passport, configAuth);
+
 };
