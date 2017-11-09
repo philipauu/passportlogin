@@ -21,7 +21,7 @@ function insta_routes(app, passport) {
             failureRedirect: '/'
         }));
 
-    // UNLINK FB -------------------------------
+    // UNLINK INSTA -------------------------------
     app.get('/unlink/instagram', function (req, res) {
         var user = req.user;
         user.instagram.token = undefined;
