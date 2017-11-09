@@ -1,27 +1,27 @@
-function spotify_passport(User, passport, configAuth) {
-    var SpotifyStrategy = require('passport-spotify').Strategy;
+function insta_passport(User, passport, configAuth) {
+    var InstagramStrategy = require('passport-instagram').Strategy;
 
-    passport.use(new SpotifyStrategy({
+    passport.use(new InstagramStrategy({
 
             // pull in our app id and secret from our auth.js file
-            clientID: configAuth.spotifyAuth.clientID,
-            clientSecret: configAuth.spotifyAuth.clientSecret,
-            callbackURL: configAuth.spotifyAuth.callbackURL,
+            clientID: configAuth.instagramAuth.clientID,
+            clientSecret: configAuth.instagramAuth.clientSecret,
+            callbackURL: configAuth.instagramAuth.callbackURL,
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
         },
 
-        // spotify will send back the token and profile
+        // instagram will send back the token and profile
         function (req, token, refreshToken, profile, done) {
-            
+            console.log(profile);
             // asynchronous
             process.nextTick(function () {
 
                 // check if the user is already logged in
                 if (!req.user) {
 
-                    // find the user in the database based on their spotify id
+                    // find the user in the database based on their instagram id
                     User.findOne({
-                        'spotify.id': profile.id
+                        'instagram.id': profile.id
                     }, function (err, user) {
 
                         // if there is an error, stop everything and return that
@@ -33,10 +33,10 @@ function spotify_passport(User, passport, configAuth) {
                         if (user) {
 
                             // if there is a user id already but no token (user was linked at one point and then removed)
-                            if (!user.spotify.token) {
-                                user.spotify.token = token;
-                                user.spotify.displayName = profile.displayName;
-                                user.spotify.followers = profile.followers;
+                            if (!user.instagram.token) {
+                                user.instagram.token = token;
+                                user.instagram.name = profile.name.givenName + ' ' + profile.name.familyName;
+                                user.instagram.email = profile.emails[0].value;
 
                                 user.save(function (err) {
                                     if (err)
@@ -50,10 +50,10 @@ function spotify_passport(User, passport, configAuth) {
                             // if there is no user, create them
                             var newUser = new User();
 
-                            newUser.spotify.id = profile.id;
-                            newUser.spotify.token = token;
-                            newUser.spotify.displayName = profile.displayName;
-                            newUser.spotify.followers = profile.followers;
+                            newUser.instagram.id = profile.id;
+                            newUser.instagram.token = token;
+                            newUser.instagram.name = profile.name.givenName + ' ' + profile.name.familyName;
+                            newUser.instagram.email = profile.emails[0].value;
 
                             newUser.save(function (err) {
                                 if (err)
@@ -67,10 +67,10 @@ function spotify_passport(User, passport, configAuth) {
                     // user already exists and is logged in, we have to link accounts
                     var user = req.user; // pull the user out of the session
 
-                    user.spotify.id = profile.id;
-                    user.spotify.token = token;
-                    user.spotify.displayName = profile.displayName
-                    user.spotify.followers = profile.followers;
+                    user.instagram.id = profile.id;
+                    user.instagram.token = token;
+                    user.instagram.name = profile.name.givenName + ' ' + profile.name.familyName;
+                    user.instagram.email = profile.emails[0].value;
 
                     user.save(function (err) {
                         if (err)
@@ -85,4 +85,4 @@ function spotify_passport(User, passport, configAuth) {
 
 }
 
-module.exports = spotify_passport;
+module.exports = insta_passport;

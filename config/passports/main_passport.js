@@ -25,4 +25,7 @@ module.exports = function (passport) {
     var spotify_passport = require('./spotify_passport');
     spotify_passport(User, passport, configAuth);
 
+    var insta_passport = require('./insta_passport');
+    insta_passport(User, passport, configAuth);
+
 };

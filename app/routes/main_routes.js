@@ -34,6 +34,9 @@ module.exports = function (app, passport) {
     var spotify_routes = require('./spotify_routes');
     spotify_routes(app, passport);
 
+    var insta_routes = require('./insta_routes');
+    insta_routes(app, passport);
+
 };
 
 // route middleware to ensure user is logged in

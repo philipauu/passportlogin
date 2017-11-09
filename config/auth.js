@@ -10,7 +10,7 @@ module.exports = {
     'twitterAuth': {
         'consumerKey': '5Ly3IphzGqR2a3sQspCdtOrLJ',
         'consumerSecret': 'qAm0GuS8O2KieKt2EfmlHTsozud3n3EsOlaje9pkv2BLEalsBV',
-        'callbackURL': 'http://127.0.0.1:8080/auth/twitter/callback'
+        'callbackURL': 'http://localhost:8080/auth/twitter/callback'
     },
 
     'googleAuth': {
@@ -23,5 +23,11 @@ module.exports = {
         'clientID': '7a6d9c4143a24eb4b021e94fd6dbf20e',
         'clientSecret': 'fcfdd9eb6b514c43a459c26b9ae51dd6',
         'callbackURL': 'http://localhost:8080/auth/spotify/callback'
+    },
+
+    'instagramAuth': {
+        'clientID': 'feb02e9e421847f3b7092526a3e07661',
+        'clientSecret': '893832756afb4879a5ee6d08c9d737b0 ',
+        'callbackURL': 'http://127.0.0.1:8080/auth/instagram/callback'
     }
 };
