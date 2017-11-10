@@ -16,7 +16,7 @@ function spotify_passport(User, passport, configAuth) {
 
         // check if the user is already logged in
         if (!req.user) {
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                              
             // find the user in the database based on their spotify id
             User.findOne({
                 'spotify.id': profile.id
